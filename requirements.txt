@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+aiofiles
+
+git+https://github.com/mikeckennedy/fastapi-chameleon
+
+starlette
+python-multipart
+pymongo[srv]
+python-dotenv
+passlib
+gunicorn
