@@ -116,7 +116,7 @@ async def spending(request: Request):
     
     db.spending.insert_one({
         "email": email,
-        "quantity": quantity,
+        "quantity": float(quantity),
         "category_select": category_select,
         "other": other,
         "created": datetime.datetime.utcnow(),
