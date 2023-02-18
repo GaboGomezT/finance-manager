@@ -1,10 +1,9 @@
 <div metal:use-macro="load: ../shared/_layout.pt">
     <div metal:fill-slot="content" tal:omit-tag="True">
 
-        <div class="content flex justify-center">
-            <div tal:condition="not is_logged_in" class="container p-4 mt-20 w-2/3">
+            <div tal:condition="not is_logged_in" class="p-4 mt-20 w-5/6">
             </div>
-            <div tal:condition="is_logged_in" class="container p-4 mt-20 w-2/3 flex justify-center">
+            <div tal:condition="is_logged_in" class="text-3xl p-4 mt-20">
                 <table class="w-full table-auto bg-white shadow-md rounded-lg">
                     <thead>
                       <tr class="text-left bg-gray-200">
@@ -32,7 +31,6 @@
 
             </div>
 
-        </div>
 
     </div>
 </div>
