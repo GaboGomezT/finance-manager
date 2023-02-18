@@ -33,13 +33,13 @@
 
         </div>
 
-        <div tal:condition="is_logged_in" class="container p-4 mt-20 w-2/3 flex justify-center">
-            <form action="/spending" method="POST">
-                <label class="text-2xl font-semibold text-indigo-50" for="quantity">Cantidad</label><br>
-                <input class="w-max rounded-lg mb-4 mt-2 px-2 py-1" type="number" step="0.01" id="quantity"
-                    name="quantity" required><br>
-                <label class="text-2xl font-semibold text-indigo-50" for="category-select">Categoría</label><br>
-                <select class="mt-2" name="category-select" id="category-select" required>
+        <div tal:condition="is_logged_in" class="p-4 mt-20 w-5/6 mx-auto">
+            <form action="/spending" method="POST" class="bg-white shadow-md rounded-lg px-12 pt-16 pb-12 mb-4">
+                <label class="text-5xl font-semibold text-gray-700" for="quantity">Cantidad</label>
+                <input class="block text-gray-700 text-5xl border border-black mb-2" type="number" step="0.01" id="quantity"
+                    name="quantity" required>
+                <label class="text-5xl font-semibold text-gray-700" for="category-select">Categoría</label>
+                <select class="block text-gray-700 text-5xl border border-black mt-2" name="category-select" id="category-select" required>
                     <option value="">Escoge una categoría</option>
                     <option value="Despensa">Despensa</option>
                     <option value="Restaurante">Restaurante</option>
@@ -51,14 +51,11 @@
                     <option value="Servicios">Servicios</option>
                     <option value="No considerado">No considerado</option>
                 </select>
-                <br>
-                <br>
-                <label class="text-2xl font-semibold text-indigo-50" for="description">Otro</label><br>
-                <p class="text-indigo-50">Escribe una pequeña descripcón del gasto.</p>
-                <input class="w-max rounded-lg mb-4 px-2 mt-2" type="text" id="description" name="description"
+                <p class="text-gray-700 text-3xl mt-6">Escribe una pequeña descripcón del gasto.</p>
+                <input class="text-5xl font-semibold text-gray-700 border border-black rounded-lg mb-4 px-2 mt-2" type="text" id="description" name="description"
                     required><br>
                 <input
-                    class="bg-pink-800 hover:bg-pink-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    class="text-5xl bg-pink-800 hover:bg-pink-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit" value="Registrar">
             </form>
 
