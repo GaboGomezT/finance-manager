@@ -68,15 +68,6 @@ async def register(request: Request):
     return response
 
 
-@router.get('/login')
-@template()
-def login(request: Request):
-    is_logged_in = cookie_auth.get_email_via_auth_cookie(request)
-    return {
-        "is_logged_in": is_logged_in
-    }
-
-
 @router.post('/login')
 @template()
 async def login(request: Request):
