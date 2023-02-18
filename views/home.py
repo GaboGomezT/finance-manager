@@ -1,4 +1,7 @@
 import datetime
+import pytz
+
+import pymongo
 from infrastructure.mongo import db
 from data.user import login_user, register_user
 import fastapi
@@ -111,17 +114,38 @@ async def spending(request: Request):
     form = await request.form()
     quantity = form.get('quantity')
     category_select = form.get('category-select')
-    other = form.get('other')
+    description = form.get('description')
     email = cookie_auth.get_email_via_auth_cookie(request)
     
     db.spending.insert_one({
         "email": email,
         "quantity": float(quantity),
         "category_select": category_select,
-        "other": other,
+        "description": description,
         "created": datetime.datetime.utcnow(),
     })
 
-    response = fastapi.responses.RedirectResponse(url='/', status_code=status.HTTP_302_FOUND)
+    response = fastapi.responses.RedirectResponse(url='/spending', status_code=status.HTTP_302_FOUND)
 
     return response
+
+@router.get('/spending')
+@template()
+def spending(request: Request):
+    is_logged_in = cookie_auth.get_email_via_auth_cookie(request)
+    all_spent = db.spending.find().sort("created", pymongo.DESCENDING)
+
+    utc_timezone = pytz.timezone('UTC')
+    cst_timezone = pytz.timezone('America/Mexico_City')
+    processed = []
+    for item in all_spent:
+        utc_time = utc_timezone.localize(item.get("created"))
+        item["created"] = utc_time.astimezone(cst_timezone).strftime('%d-%m-%Y %H:%M')
+        user = db.users.find_one({"email": item["email"]})
+        item["name"] = user["name"]
+        processed.append(item)
+
+    return {
+        "is_logged_in": is_logged_in,
+        "spent": processed
+    }

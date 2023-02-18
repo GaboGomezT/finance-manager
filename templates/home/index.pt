@@ -11,21 +11,21 @@
                     <label class="text-2xl font-semibold text-indigo-50" for="category-select">Categoría</label><br>
                     <select class="mt-2" name="category-select" id="category-select" required>
                         <option value="">Escoge una categoría</option>
-                        <option value="Food">Despensa</option>
-                        <option value="Restaurant">Restaurante</option>
-                        <option value="Education">Educación</option>
-                        <option value="Work">Trabajo</option>
-                        <option value="Entertainment">Entretenimiento</option>
-                        <option value="Health">Salud</option>
-                        <option value="Pets">Mascotas</option>
-                        <option value="Services">Servicios</option>
-                        <option value="Other">No considerado</option>
+                        <option value="Despensa">Despensa</option>
+                        <option value="Restaurante">Restaurante</option>
+                        <option value="Educación">Educación</option>
+                        <option value="Trabajo">Trabajo</option>
+                        <option value="Entretenimiento">Entretenimiento</option>
+                        <option value="Salud">Salud</option>
+                        <option value="Mascotas">Mascotas</option>
+                        <option value="Servicios">Servicios</option>
+                        <option value="No considerado">No considerado</option>
                     </select>
                     <br>
                     <br>
-                    <label class="text-2xl font-semibold text-indigo-50" for="other">Otro</label><br>
-                    <p class="text-indigo-50">Si es un gasto no considerado escribe una pequeña descripcón de qué fue.</p>
-                    <input class="w-max rounded-lg mb-4 px-2 mt-2" type="text" id="other" name="other"><br>
+                    <label class="text-2xl font-semibold text-indigo-50" for="description">Otro</label><br>
+                    <p class="text-indigo-50">Escribe una pequeña descripcón del gasto.</p>
+                    <input class="w-max rounded-lg mb-4 px-2 mt-2" type="text" id="description" name="description" required><br>
                     <input
                         class="bg-pink-800 hover:bg-pink-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="submit" value="Registrar">
