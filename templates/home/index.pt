@@ -13,15 +13,33 @@
                 </p>
             </div>
             <div tal:condition="is_logged_in" class="container p-4 mt-20 w-2/3 flex justify-center">
-                <form action="/signal" method="POST">
-                    <label class="text-3xl font-semibold text-indigo-50" for="title">Título</label><br>
-                    <input class="w-max rounded-lg mb-4 px-6 py-4" type="text" id="title" name="title"><br>
-                    <label class="text-3xl font-semibold text-indigo-50" for="message">Mensaje</label><br>
-                    <textarea name="message" id="message" cols="50" rows="10" class="w-max rounded-lg mb-4"></textarea><br>
-                    <input class="bg-pink-800 hover:bg-pink-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Enviar Señal">
-                </form> 
+                <form action="/spending" method="POST">
+                    <label class="text-2xl font-semibold text-indigo-50" for="quantity">Cantidad</label><br>
+                    <input class="w-max rounded-lg mb-4 mt-2 px-2 py-1" type="number" id="quantity" name="quantity" required><br>
+                    <label class="text-2xl font-semibold text-indigo-50" for="category-select">Categoría</label><br>
+                    <select class="mt-2" name="category-select" id="category-select" required>
+                        <option value="">Escoge una categoría</option>
+                        <option value="Food">Despensa</option>
+                        <option value="Restaurant">Restaurante</option>
+                        <option value="Education">Educación</option>
+                        <option value="Work">Trabajo</option>
+                        <option value="Entertainment">Entretenimiento</option>
+                        <option value="Health">Salud</option>
+                        <option value="Pets">Mascotas</option>
+                        <option value="Services">Servicios</option>
+                        <option value="Other">No considerado</option>
+                    </select>
+                    <br>
+                    <br>
+                    <label class="text-2xl font-semibold text-indigo-50" for="other">Otro</label><br>
+                    <p class="text-indigo-50">Si es un gasto no considerado escribe una pequeña descripcón de qué fue.</p>
+                    <input class="w-max rounded-lg mb-4 px-2 mt-2" type="text" id="other" name="other"><br>
+                    <input
+                        class="bg-pink-800 hover:bg-pink-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="submit" value="Registrar">
+                </form>
 
-            </div>   
+            </div>
 
         </div>
 

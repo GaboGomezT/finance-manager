@@ -10,7 +10,7 @@ app = fastapi.FastAPI()
 
 def main():
     configure(dev_mode=True)
-    uvicorn.run(app, host='127.0.0.1', port=8000, debug=True)
+    uvicorn.run(app, host='127.0.0.1', port=8000)
 
 
 def configure(dev_mode: bool):

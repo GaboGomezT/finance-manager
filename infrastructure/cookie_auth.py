@@ -32,7 +32,6 @@ def get_email_via_auth_cookie(request: Request) -> Optional[int]:
     hash_val = parts[1]
     hash_val_check = __hash_text(email)
     if hash_val != hash_val_check:
-        print("Warning: Hash mismatch, invalid cookie value")
         return None
 
     return email

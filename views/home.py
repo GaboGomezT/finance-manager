@@ -1,5 +1,6 @@
-from data.signal import look_for_signal, send_signal
-from data.user import delete_user, login_user, register_user
+import datetime
+from infrastructure.mongo import db
+from data.user import login_user, register_user
 import fastapi
 from fastapi_chameleon import template
 from infrastructure import cookie_auth
@@ -13,7 +14,6 @@ router = fastapi.APIRouter()
 @template()
 def index(request: Request):
     is_logged_in = cookie_auth.get_email_via_auth_cookie(request)
-    print("is_logged_in: ", is_logged_in)
     return {
         "is_logged_in": is_logged_in
     }
@@ -23,7 +23,6 @@ def index(request: Request):
 @template()
 def register(request: Request):
     is_logged_in = cookie_auth.get_email_via_auth_cookie(request)
-    print("is_logged_in: ", is_logged_in)
     return {
         "is_logged_in": is_logged_in
     }
@@ -70,7 +69,6 @@ async def register(request: Request):
 @template()
 def login(request: Request):
     is_logged_in = cookie_auth.get_email_via_auth_cookie(request)
-    print("is_logged_in: ", is_logged_in)
     return {
         "is_logged_in": is_logged_in
     }
@@ -108,49 +106,22 @@ def logout():
 
     return response
 
-
-@router.post('/signal')
-@template()
-async def signal(request: Request):
+@router.post('/spending')
+async def spending(request: Request):
     form = await request.form()
-    title = form.get('title')
-    message = form.get('message')
+    quantity = form.get('quantity')
+    category_select = form.get('category-select')
+    other = form.get('other')
     email = cookie_auth.get_email_via_auth_cookie(request)
-
-    send_signal(email, title, message)
-
-    response = fastapi.responses.RedirectResponse(url='/signal', status_code=status.HTTP_302_FOUND)
-
-    return response
-
-
-@router.get('/signal')
-@template()
-async def signal(request: Request):
-    email = cookie_auth.get_email_via_auth_cookie(request)
-    signal = look_for_signal(email) if email else None
-    return {
-        "is_logged_in": email,
-        "signal": signal,
-    }
-
-
-@router.post('/account')
-@template()
-async def account(request: Request):
-    email = cookie_auth.get_email_via_auth_cookie(request)
-
-    delete_user(email)
+    
+    db.spending.insert_one({
+        "email": email,
+        "quantity": quantity,
+        "category_select": category_select,
+        "other": other,
+        "created": datetime.datetime.utcnow(),
+    })
 
     response = fastapi.responses.RedirectResponse(url='/', status_code=status.HTTP_302_FOUND)
-    cookie_auth.logout(response)
+
     return response
-
-
-@router.get('/account')
-@template()
-async def account(request: Request):
-    email = cookie_auth.get_email_via_auth_cookie(request)
-    return {
-        "is_logged_in": email,
-    }
