@@ -69,7 +69,6 @@ async def register(request: Request):
 
 
 @router.post('/login')
-@template()
 async def login(request: Request):
     form = await request.form()
     password = form.get('password')
