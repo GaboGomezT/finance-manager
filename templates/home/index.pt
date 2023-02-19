@@ -49,6 +49,7 @@
                     <option value="Salud">Salud</option>
                     <option value="Mascotas">Mascotas</option>
                     <option value="Servicios">Servicios</option>
+                    <option value="Gastos Viri">Gastos Viri</option>
                     <option value="No considerado">No considerado</option>
                 </select>
                 <p class="text-gray-700 text-3xl mt-6">Escribe una pequeña descripcón del gasto.</p>
